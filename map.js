@@ -8,24 +8,11 @@ const bikeLanePaint = {
   'line-opacity': 0.6,
 };
 
-const basemapStyle = {
-  version: 8,
-  sources: {
-    openstreetmap: {
-      type: 'raster',
-      tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-      tileSize: 256,
-      attribution: '&copy; OpenStreetMap contributors',
-    },
-  },
-  layers: [
-    {
-      id: 'openstreetmap',
-      type: 'raster',
-      source: 'openstreetmap',
-    },
-  ],
-};
+if (!window.MAPBOX_TOKEN) {
+  throw new Error('Missing Mapbox token. Copy config.example.js to config.js and add your token.');
+}
+
+mapboxgl.accessToken = window.MAPBOX_TOKEN;
 
 const bluebikesStationUrl = 'https://dsc106.com/labs/lab07/data/bluebikes-stations.json';
 const bluebikesTrafficUrl = 'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv';
@@ -37,7 +24,7 @@ const stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
 // Initialize the map
 const map = new mapboxgl.Map({
   container: 'map',
-  style: basemapStyle,
+  style: 'mapbox://styles/mapbox/streets-v12',
   center: [-71.09415, 42.36027],
   zoom: 12,
   minZoom: 5,
