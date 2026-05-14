@@ -2,16 +2,34 @@
 import mapboxgl from 'https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/+esm';
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
-if (!window.MAPBOX_TOKEN) {
-  throw new Error('Missing Mapbox token. Copy config.example.js to config.js and add your token.');
-}
-
-mapboxgl.accessToken = window.MAPBOX_TOKEN;
-
 const bikeLanePaint = {
   'line-color': '#32D400',
   'line-width': 5,
   'line-opacity': 0.6,
+};
+
+const basemapStyle = {
+  version: 8,
+  sources: {
+    'carto-light': {
+      type: 'raster',
+      tiles: [
+        'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        'https://d.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      ],
+      tileSize: 256,
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    },
+  },
+  layers: [
+    {
+      id: 'carto-light',
+      type: 'raster',
+      source: 'carto-light',
+    },
+  ],
 };
 
 const bluebikesStationUrl = 'https://dsc106.com/labs/lab07/data/bluebikes-stations.json';
@@ -24,7 +42,7 @@ const stationFlow = d3.scaleQuantize().domain([0, 1]).range([0, 0.5, 1]);
 // Initialize the map
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v12',
+  style: basemapStyle,
   center: [-71.09415, 42.36027],
   zoom: 12,
   minZoom: 5,
