@@ -8,7 +8,7 @@ const bikeLanePaint = {
   'line-opacity': 0.6,
 };
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiaXNoYWFudGliZGV3YWwiLCJhIjoiY21wNXJ4aGZpMDRoYjJycTRmbXcyZ2xpZiJ9.g_L3w71nJ9ViS4qflnsXjA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiaXNoYWFudGliZGV3YWwiLCJhIjoiY21wNHkweTZjMHV3cDJxb2E0NzQxZXFwcCJ9.OlBln986jFQ6JmsnRLK4iw';
 
 const bluebikesStationUrl = 'https://dsc106.com/labs/lab07/data/bluebikes-stations.json';
 const bluebikesTrafficUrl = 'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv';
