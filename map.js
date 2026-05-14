@@ -11,23 +11,18 @@ const bikeLanePaint = {
 const basemapStyle = {
   version: 8,
   sources: {
-    'carto-light': {
+    openstreetmap: {
       type: 'raster',
-      tiles: [
-        'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-        'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-        'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-        'https://d.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-      ],
+      tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
       tileSize: 256,
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      attribution: '&copy; OpenStreetMap contributors',
     },
   },
   layers: [
     {
-      id: 'carto-light',
+      id: 'openstreetmap',
       type: 'raster',
-      source: 'carto-light',
+      source: 'openstreetmap',
     },
   ],
 };
